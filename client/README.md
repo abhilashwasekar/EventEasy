@@ -1,8 +1,35 @@
-# React + Vite
+# 🎉 EventEasy
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**EventEasy** is a full-stack event management application built with **React (Vite)** frontend and **Node.js + Express + MongoDB** backend. Admins can create, edit, and delete events, and users can register for them. Each event maintains a separate collection of registrations.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 Live Demo
+
+Deployed on: [https://youreventeasy.vercel.app](https://youreventeasy.vercel.app)
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend:
+- React (with Vite)
+- TailwindCSS
+- React Router DOM
+- Zustand (state management)
+- Axios
+- Framer Motion
+- ShadCN UI
+- Lucide Icons
+
+### Backend:
+- Node.js + Express
+- MongoDB + Mongoose
+- Multer (for image uploads)
+- CORS
+- Dotenv
+
+---
+
+## 📂 Folder Structure
+
