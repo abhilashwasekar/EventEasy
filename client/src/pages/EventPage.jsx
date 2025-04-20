@@ -67,7 +67,9 @@ const EventPage = () => {
                 {event.title}
               </h2>
               <p className="text-gray-700 dark:text-gray-300">
-                {event.description}
+                {event.description.length > 100
+                  ? event.description.slice(0, 100) + "..."
+                  : event.description}
               </p>
               <p className="text-sm text-gray-600 mt-1 dark:text-gray-400">
                 📅 {new Date(event.date).toLocaleDateString()}
@@ -89,14 +91,14 @@ const EventPage = () => {
         </div>
       )}
 
-      {/* Modal */}
+      {/* Modal for full event details */}
       {selectedEvent && (
         <div
           className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
           onClick={closeModal}
         >
           <div
-            className="bg-white dark:bg-gray-800 rounded-lg max-w-3xl w-[95%] max-h-[90vh] overflow-auto relative animate-zoomIn"
+            className="bg-white dark:bg-gray-800 rounded-lg max-w-3xl w-[95%] max-h-[90vh] overflow-auto relative animate-zoomIn shadow-lg"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -105,6 +107,7 @@ const EventPage = () => {
             >
               ✖
             </button>
+
             {selectedEvent.image && (
               <img
                 src={`https://eventeasy.onrender.com${selectedEvent.image}`}
@@ -112,25 +115,59 @@ const EventPage = () => {
                 className="w-full max-h-[60vh] object-contain rounded-t"
               />
             )}
-            <div className="p-6">
-              <h2 className="text-2xl font-bold mb-2 dark:text-white">
+
+            <div className="p-6 space-y-4">
+              <h2 className="text-2xl font-bold dark:text-white">
                 {selectedEvent.title}
               </h2>
-              <p className="text-gray-700 dark:text-gray-300 mb-2">
-                {selectedEvent.description}
-              </p>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
-                📅 {new Date(selectedEvent.date).toLocaleDateString()}
-              </p>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                📍 {selectedEvent.location}
-              </p>
-              <button
-                onClick={() => handleRegister(selectedEvent._id)}
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-              >
-                Register
-              </button>
+
+              <div className="text-gray-700 dark:text-gray-300 space-y-2">
+                <p>
+                  <span className="font-semibold">Description:</span>{" "}
+                  {selectedEvent.description}
+                </p>
+                <p>
+                  <span className="font-semibold">Date:</span>{" "}
+                  {new Date(selectedEvent.date).toLocaleDateString()}
+                </p>
+                <p>
+                  <span className="font-semibold">Location:</span>{" "}
+                  {selectedEvent.location}
+                </p>
+
+                {/* Optional fields if you have them in your backend */}
+                {selectedEvent.organizer && (
+                  <p>
+                    <span className="font-semibold">Organizer:</span>{" "}
+                    {selectedEvent.organizer}
+                  </p>
+                )}
+                {selectedEvent.contact && (
+                  <p>
+                    <span className="font-semibold">Contact:</span>{" "}
+                    {selectedEvent.contact}
+                  </p>
+                )}
+                {selectedEvent.rules && (
+                  <div>
+                    <p className="font-semibold">Rules:</p>
+                    <ul className="list-disc list-inside">
+                      {selectedEvent.rules.split("\n").map((rule, index) => (
+                        <li key={index}>{rule}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+
+              <div className="text-center">
+                <button
+                  onClick={() => handleRegister(selectedEvent._id)}
+                  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                >
+                  Register
+                </button>
+              </div>
             </div>
           </div>
         </div>
