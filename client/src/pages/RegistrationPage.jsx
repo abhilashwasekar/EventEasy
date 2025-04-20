@@ -18,7 +18,7 @@ const RegistrationPage = () => {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/events/${eventId}`);
+        const res = await axios.get(`https://eventeasy.onrender.com/api/events/${eventId}`);
         setEventName(res.data.title || "");
       } catch (err) {
         console.error("Error fetching event:", err);
@@ -40,7 +40,7 @@ const RegistrationPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/participation", {
+      await axios.post("https://eventeasy.onrender.com/api/participation", {
         ...form,
         eventId,
       });
