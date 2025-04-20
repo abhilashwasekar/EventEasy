@@ -6,7 +6,7 @@
 
 ## 🌐 Live Demo
 
-Deployed on: [https://youreventeasy.vercel.app](https://youreventeasy.vercel.app)
+Deployed on: [(https://event-easy.vercel.app/)]
 
 ---
 
