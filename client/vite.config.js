@@ -9,4 +9,8 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
+  base: "/", // 👈 necessary for proper routing when deployed
+  build: {
+    outDir: "dist", // 👈 makes sure Vite outputs to /dist for Vercel
+  },
 });
