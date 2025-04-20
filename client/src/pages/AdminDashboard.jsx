@@ -14,7 +14,7 @@ const AdminDashboard = () => {
 
   const fetchEvents = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/events");
+      const res = await axios.get("https://eventeasy.onrender.com/api/events");
       setEvents(res.data);
     } catch (err) {
       console.error("Failed to fetch events:", err);
@@ -34,9 +34,9 @@ const AdminDashboard = () => {
 
     try {
       if (editId) {
-        await axios.put(`http://localhost:5000/api/events/${editId}`, data);
+        await axios.put(`https://eventeasy.onrender.com/api/events/${editId}`, data);
       } else {
-        await axios.post("http://localhost:5000/api/events", data);
+        await axios.post("https://eventeasy.onrender.com/api/events", data);
       }
       setFormData({
         title: "",
@@ -65,7 +65,7 @@ const AdminDashboard = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/events/${id}`);
+      await axios.delete(`https://eventeasy.onrender.com/api/events/${id}`);
       fetchEvents();
     } catch (err) {
       console.error("Failed to delete event:", err);
