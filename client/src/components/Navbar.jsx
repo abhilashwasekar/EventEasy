@@ -8,7 +8,7 @@ const Navbar = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000); // Simulate 1s loading
+    const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -20,36 +20,38 @@ const Navbar = () => {
   );
 
   return (
-    <div className="flex items-center justify-between px-6 py-4 bg-white dark:bg-gray-900 shadow-md">
+    <div className="flex flex-wrap items-center justify-between px-4 sm:px-6 py-3 sm:py-4 bg-white dark:bg-gray-900 shadow-md">
       <div
-        className="flex items-center gap-4 cursor-pointer"
+        className="flex items-center gap-3 sm:gap-4 cursor-pointer"
         onClick={() => navigate("/")}
       >
         {loading ? (
           <>
-            <Skeleton width="48px" height="48px" rounded="rounded-full" />
-            <Skeleton width="100px" height="24px" />
+            <Skeleton width="40px" height="40px" rounded="rounded-full" />
+            <Skeleton width="80px" height="20px" />
           </>
         ) : (
           <>
-            <img src={logo} alt="Logo" className="h-12 w-auto" />
-            <h1 className="text-2xl font-semibold dark:text-white">EventEasy</h1>
+            <img src={logo} alt="Logo" className="h-10 w-auto sm:h-12" />
+            <h1 className="text-xl sm:text-2xl font-semibold dark:text-white">EventEasy</h1>
           </>
         )}
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 sm:gap-4 mt-3 sm:mt-0">
         {loading ? (
           <>
-            <Skeleton width="40px" height="40px" rounded="rounded-full" />
-            <Skeleton width="120px" height="40px" rounded="rounded-lg" />
+            <Skeleton width="32px" height="32px" rounded="rounded-full" />
+            <Skeleton width="100px" height="36px" rounded="rounded-lg" />
           </>
         ) : (
           <>
-            <ThemeToggle />
+            <div className="scale-90 sm:scale-100">
+              <ThemeToggle />
+            </div>
             <button
               onClick={() => navigate("/admin-login")}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              className="text-sm sm:text-base px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
             >
               Admin Login
             </button>
