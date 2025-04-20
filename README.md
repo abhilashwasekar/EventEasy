@@ -33,3 +33,40 @@ Deployed on: [https://youreventeasy.vercel.app](https://youreventeasy.vercel.app
 
 ## 📂 Folder Structure
 
+
+---
+
+## 🧪 Run Locally
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/your-username/eventeasy.git
+cd eventeasy
+
+
+##Install Dependencies
+
+# Frontend
+cd eventeasy-frontend
+npm install
+
+# Backend
+cd ../server
+npm install
+
+
+##Start dev server
+
+# Frontend
+cd client
+npm run dev
+
+# Backend
+cd server
+npm start
+
+
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/eventeasy
+PORT=5000
+
