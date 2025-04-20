@@ -11,6 +11,8 @@ const AdminDashboard = () => {
     image: null,
   });
   const [editId, setEditId] = useState(null);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
 
   const fetchEvents = async () => {
     try {
@@ -25,6 +27,12 @@ const AdminDashboard = () => {
     fetchEvents();
   }, []);
 
+  const handleAddOrUpdateSuccess = (message) => {
+    setSuccessMessage(message);
+    setShowSuccessPopup(true);
+    setTimeout(() => setShowSuccessPopup(false), 3000);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData();
@@ -35,9 +43,12 @@ const AdminDashboard = () => {
     try {
       if (editId) {
         await axios.put(`https://eventeasy.onrender.com/api/events/${editId}`, data);
+        handleAddOrUpdateSuccess("Event updated successfully!");
       } else {
         await axios.post("https://eventeasy.onrender.com/api/events", data);
+        handleAddOrUpdateSuccess("Event added successfully!");
       }
+
       setFormData({
         title: "",
         description: "",
@@ -58,7 +69,7 @@ const AdminDashboard = () => {
       description: event.description,
       date: event.date?.slice(0, 10) || "",
       location: event.location,
-      image: null, // Do not pre-fill image field
+      image: null,
     });
     setEditId(event._id);
   };
@@ -130,7 +141,7 @@ const AdminDashboard = () => {
             <p className="dark:text-gray-300">{event.location}</p>
             {event.image && (
               <img
-                src={`http://localhost:5000${event.image}`}
+                src={`https://eventeasy.onrender.com${event.image}`}
                 alt={event.title}
                 className="mt-2 rounded max-h-64 object-cover"
               />
@@ -152,6 +163,21 @@ const AdminDashboard = () => {
           </div>
         ))}
       </div>
+
+      {showSuccessPopup && (
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl text-center animate-fade-in max-w-md w-full">
+            <h2 className="text-xl font-bold text-green-600 mb-2">Success!</h2>
+            <p className="text-gray-800 dark:text-gray-200 text-base">{successMessage}</p>
+            <button
+              onClick={() => setShowSuccessPopup(false)}
+              className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
