@@ -75,8 +75,12 @@ const AdminDashboard = () => {
   };
 
   const handleDelete = async (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this event?");
+    if (!confirmDelete) return;
+
     try {
       await axios.delete(`https://eventeasy.onrender.com/api/events/${id}`);
+      handleAddOrUpdateSuccess("Event deleted successfully!");
       fetchEvents();
     } catch (err) {
       console.error("Failed to delete event:", err);
@@ -86,6 +90,7 @@ const AdminDashboard = () => {
   return (
     <div className="p-6 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen">
       <h2 className="text-3xl font-bold mb-6 text-center">Admin Dashboard</h2>
+
       <form
         onSubmit={handleSubmit}
         className="space-y-4 max-w-lg mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md"
