@@ -10,7 +10,7 @@ const EventPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/events")
+      .get("https://eventeasy.onrender.com/api/events")
       .then((res) => setEvents(res.data))
       .catch((err) => console.error("Error fetching events:", err))
       .finally(() => setLoading(false));
@@ -58,7 +58,7 @@ const EventPage = () => {
             >
               {event.image && (
                 <img
-                  src={`http://localhost:5000${event.image}`}
+                  src={`https://eventeasy.onrender.com${event.image}`}
                   alt={event.title}
                   className="w-full h-48 object-cover mb-4 rounded"
                 />
@@ -107,7 +107,7 @@ const EventPage = () => {
             </button>
             {selectedEvent.image && (
               <img
-                src={`http://localhost:5000${selectedEvent.image}`}
+                src={`https://eventeasy.onrender.com${selectedEvent.image}`}
                 alt={selectedEvent.title}
                 className="w-full max-h-[60vh] object-contain rounded-t"
               />
